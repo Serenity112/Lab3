@@ -1,7 +1,12 @@
 #include "pch.h"
 #include "CppUnitTest.h"
+
 #include "..\Lab3\queue.h"
+#include "..\Lab3\queue.cpp"
+
 #include "..\Lab3\stack.h"
+#include "..\Lab3\stack.cpp"
+
 #include "..\Lab3\iterator.h"
 #include "..\Lab3\binaryheap.h"
 
@@ -295,43 +300,105 @@ namespace UnitTestLab3
 	{
 		TEST_METHOD(pop)
 		{
+			Queue<int> queue;
+
+			queue.push(1);
+			queue.push(2);
+			Assert::IsTrue(queue.back() == 2);
+			Assert::IsTrue(queue.front() == 1);
+
+			queue.pop();
+			Assert::IsTrue(queue.back() == 2);
+			queue.pop();
+			Assert::IsTrue(queue.empty());
 		}
 
 		TEST_METHOD(push)
 		{
-			BinaryHeap binaryheap;
-			binaryheap.insert(3);
-			binaryheap.insert(2);
-			binaryheap.insert(1);
+			Queue<int> queue;
 
-			Queue queue;
-			queue.push(binaryheap.getRoot());
-			queue.push(binaryheap.getRoot()->_left);
-			queue.push(binaryheap.getRoot()->_right);
+			Assert::IsTrue(queue.empty());
+
+			queue.push(1);
+			Assert::IsTrue(queue.front() == 1);
+
+			queue.push(2);
+			Assert::IsTrue(queue.back() == 2);
 		}
 
 		TEST_METHOD(front)
-		{}
+		{
+			Queue<int> queue;
+			queue.push(1);
+			Assert::IsTrue(queue.front() == 1);
+
+			queue.push(2);
+			queue.pop();
+			Assert::IsTrue(queue.front() == 2);
+		}
 
 		TEST_METHOD(empty)
-		{}
+		{
+			Queue<int> queue;
+			Assert::IsTrue(queue.empty());
+
+			queue.push(1);
+			Assert::IsFalse(queue.empty());
+		}
 
 		TEST_METHOD(back)
-		{}
+		{
+			Queue<int> queue;
+			queue.push(1);
+			Assert::IsTrue(queue.back() == 1);
+
+			queue.push(2);
+			Assert::IsTrue(queue.back() == 2);
+		}
 	};
 
 	TEST_CLASS(StackTest)
 	{
 		TEST_METHOD(push)
-		{}
+		{
+			Stack<int> stack;
+			stack.push(1);
+			Assert::IsTrue(stack.top() == 1);
+
+			stack.push(2);
+			Assert::IsTrue(stack.top() == 2);
+		}
 
 		TEST_METHOD(pop)
-		{}
+		{
+			Stack<int> stack;
+			stack.push(1);
+			stack.pop();
+			Assert::IsTrue(stack.empty());
+		}
 
 		TEST_METHOD(top)
-		{}
+		{
+			Stack<int> stack;
+			stack.push(1);
+			Assert::IsTrue(stack.top() == 1);
+
+			stack.push(2);
+			Assert::IsTrue(stack.top() == 2);
+
+			stack.pop();
+			Assert::IsTrue(stack.top() == 1);
+		}
 
 		TEST_METHOD(empty)
-		{}
+		{
+			Stack<int> stack;
+			Assert::IsTrue(stack.empty());
+
+			stack.push(1);
+			Assert::IsFalse(stack.empty());
+		}
+
+
 	};
 }
