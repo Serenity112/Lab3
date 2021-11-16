@@ -1,6 +1,8 @@
 #include <iostream>
 #include "queue.h"
+#include "queue.cpp"
 #include "stack.h"
+#include "stack.cpp"
 #include "iterator.h"
 
 using namespace std;
@@ -14,10 +16,7 @@ int main()
 	int result = 0;
 	int data = 0;
 	
-
 	
-	
-
 
 	cout << "Enter option:\n";
 	while (result != 10)

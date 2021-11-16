@@ -2,34 +2,28 @@
 #include "stack.h"
 using namespace std;
 
-Stack::Node::Node(BinaryHeap::Node* node, Node* prev)
+
+template <class T> Stack<T>::Node::Node(T node, Node* prev)
 {
 	_node = node;
 	_prev = prev;
 }
 
-Stack::Node::Node(BinaryHeap::Node* node) : Node(node, nullptr) { }
+template <class T> Stack<T>::Node::Node(T node) : Node(node, nullptr) { }
 
 
-Stack::Stack()
+template <class T> Stack<T>::Stack()
 {
 	_head = nullptr;
-	_count = 0;
 }
 
-int Stack::getSize()
+template <class T> void Stack<T>::push( T node)
 {
-	return _count;
-}
-
-void Stack::push(BinaryHeap::Node* node)
-{
-	_count++;
 	Node* newNode = new Node(node, _head);
 	_head = newNode;
 }
 
-void Stack::pop()	
+template <class T> void Stack<T>::pop()
 {
 	if (empty())
 	{
@@ -37,19 +31,18 @@ void Stack::pop()
 	}
 	else
 	{
-		_count--;
 		Node* temp = _head;
 		_head = _head->_prev;
 		delete temp;
 	}
 }
 
-bool Stack::empty()
+template <class T> bool Stack<T>::empty()
 {
 	return _head == nullptr;
 }
 
-BinaryHeap::Node* Stack::top()
+template <class T> T Stack<T>::top()
 {
 	if (empty())
 	{

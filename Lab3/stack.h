@@ -1,40 +1,34 @@
 #ifndef STACK_H
 #define STACK_H
 #include <iostream>
-
 #include "binaryheap.h"
 
-
-
+template <class T>
 class Stack
 {
 private:
+
 	class Node
 	{
 	public:
-		Node(BinaryHeap::Node*);
-		Node(BinaryHeap::Node*, Node*);
+		Node(T);
+		Node(T, Node*);
 
-		BinaryHeap::Node* _node;
+		T _node;
 		Node* _prev;
 	};
 
 	Node* _head;
-
-	int _count;
-
 public:
 	Stack();
 
-	int getSize();
-
 	void pop();
 
-	void push(BinaryHeap::Node*);
+	void push( T elem);
 
 	bool empty();
 
-	BinaryHeap::Node* top();
+	T top();
 };
 
 #endif

@@ -1,19 +1,19 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 #include <iostream>
-
 #include "binaryheap.h"
 
+template <class T>
 class Queue
 {
 private:
 	class Node
 	{
 	public:
-		Node(BinaryHeap::Node*);
-		Node(BinaryHeap::Node*, Node*);
+		Node(T);
+		Node(T, Node*);
 
-		BinaryHeap::Node* _node;
+		T _node;
 		Node* _prev;
 	};
 
@@ -26,13 +26,13 @@ public:
 
 	void pop();
 
-	void push(BinaryHeap::Node*);
+	void push(T);
 
 	bool empty();
 
-	BinaryHeap::Node* front();
+	T front();
 
-	BinaryHeap::Node* back();
+	T back();
 
 };
 

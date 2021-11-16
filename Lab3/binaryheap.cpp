@@ -1,6 +1,8 @@
 #include <iostream>
 #include "queue.h"
+#include "queue.cpp"
 #include "stack.h"
+#include "stack.cpp"
 using namespace std;
 
 
@@ -335,7 +337,7 @@ Iterator* BinaryHeap::create_dft_iterator()
 BinaryHeap::dft_iterator::dft_iterator(Node* root)
 {
 	_current = root;
-	stack = new Stack();	
+	stack = new Stack<Node*>();
 }
 
 BinaryHeap::dft_iterator::~dft_iterator()
@@ -395,7 +397,7 @@ Iterator* BinaryHeap::create_bft_iterator()
 BinaryHeap::bft_iterator::bft_iterator(Node* root)
 {
 	_current = root;
-	queue = new Queue();
+	queue = new Queue<Node*>();
 }
 
 BinaryHeap::bft_iterator::~bft_iterator()

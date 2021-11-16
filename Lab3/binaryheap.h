@@ -1,10 +1,12 @@
 #ifndef BINARY_TREE_H
 #define BINARY_TREE_H
 #include <iostream>
-
 #include "iterator.h"
 
+template <class T>
 class Queue;
+
+template <class T>
 class Stack;
 
 class BinaryHeap
@@ -33,16 +35,18 @@ private:
 
 	void siftUp(Node*);
 
-	bool empty();
+	
 
 public:
 
-	friend class Stack;
-	friend class Queue;
+	friend class Stack<Node*>;
+	friend class Queue<Node*>;
 
 	BinaryHeap();
 
 	~BinaryHeap();
+
+	bool empty();
 
 	bool contains(int);
 
@@ -74,7 +78,7 @@ public:
 
 		int next() override;
 	private:
-		Stack* stack;
+		Stack<Node*>* stack;
 
 		Node* _current;
 	};
@@ -94,7 +98,7 @@ public:
 
 
 	private:
-		Queue* queue;
+		Queue<Node*>* queue;
 
 		Node* _current; 
 	};

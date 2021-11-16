@@ -3,19 +3,19 @@
 using namespace std;
 
 
-Queue::Node::Node(BinaryHeap::Node* node)
+template <class T> Queue<T>::Node::Node(T node)
 {
 	_node = node;
 	_prev = nullptr;
 }
 
-Queue::Queue()
+template <class T> Queue<T>::Queue()
 {
 	_head = nullptr;
 	_last = nullptr;
 }
 
-void Queue::push(BinaryHeap::Node* node)
+template <class T> void Queue<T>::push(T node)
 {
 	Node* newNode = new Node(node);
 	if (empty())
@@ -30,7 +30,7 @@ void Queue::push(BinaryHeap::Node* node)
 	}
 }
 
-void Queue::pop()
+template <class T> void Queue<T>::pop()
 {
 	if (empty())
 	{
@@ -44,12 +44,12 @@ void Queue::pop()
 	}
 }
 
-bool Queue::empty()
+template <class T> bool Queue<T>::empty()
 {
 	return _head == nullptr;
 }
 
-BinaryHeap::Node* Queue::front()
+template <class T> T Queue<T>::front()
 {
 	if (empty())
 	{
@@ -62,7 +62,7 @@ BinaryHeap::Node* Queue::front()
 	
 }
 
-BinaryHeap::Node* Queue::back()
+template <class T> T Queue<T>::back()
 {
 	if (empty())
 	{
