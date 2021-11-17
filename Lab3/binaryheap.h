@@ -15,15 +15,13 @@ private:
 	class Node
 	{
 	public:
-		friend class BinaryHeapTest;
-
 		Node(int);
-
-		int _data;
 
 		Node* _parent;
 		Node* _left;
 		Node* _right;
+
+		int _data;	
 	};
 
 	Node* _root;
@@ -31,17 +29,13 @@ private:
 	int _height;
 	int _lastLineNodesCount;
 
+	void Heapify(Node*);
+
 	void siftDown(Node*);
 
 	void siftUp(Node*);
 
-	
-
 public:
-
-	friend class Stack<Node*>;
-	friend class Queue<Node*>;
-
 	BinaryHeap();
 
 	~BinaryHeap();
@@ -54,12 +48,11 @@ public:
 
 	void remove(int);
 
-	
-	Node* getRoot();
-
 	Node* findNode(int);
 
 	Node* findParentOfLast(int);
+
+	Node* getRoot();
 
 	Iterator* create_dft_iterator();
 

@@ -59,7 +59,6 @@ template <class T> T Queue<T>::front()
 	{
 		return _head->_node;
 	}
-	
 }
 
 template <class T> T Queue<T>::back()

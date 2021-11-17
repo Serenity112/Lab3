@@ -205,9 +205,15 @@ namespace UnitTestLab3
 
 			//removing 10
 			binaryheap.remove(10);
-			int array3[1] = { 11 };
+			int elem = 11;
 			i = 0;
-			Assert::IsTrue(binaryheap.getRoot()->_data == 11);
+			bft_iterator = binaryheap.create_bft_iterator();
+			while (bft_iterator->has_next())
+			{
+				Assert::IsTrue(bft_iterator->next() == elem);
+				i++;
+			}
+			delete bft_iterator;
 
 			//removing 11
 			binaryheap.remove(11);

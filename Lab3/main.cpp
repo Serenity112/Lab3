@@ -9,6 +9,7 @@ using namespace std;
 
 int main()
 {
+
 	setlocale(LC_ALL, "Russian");
 
 	BinaryHeap binaryheap;
@@ -16,12 +17,10 @@ int main()
 	int result = 0;
 	int data = 0;
 	
-	
-
 	cout << "Enter option:\n";
 	while (result != 10)
 	{
-		cout << "1) Insert\n2) Contains\n3) Remove\n4) Depth-first search\n5) Breadth-first search\n";
+		cout << "1) Insert\n2) Contains\n3) Remove\n4) Depth-first search\n5) Breadth-first search\n6) Exit\n";
 		cin >> result;
 		try
 		{
@@ -75,16 +74,16 @@ int main()
 				cout << endl;
 				delete bft_iterator;
 				break;
-			default:
-				break;
+			case 6:
+				throw out_of_range("Exit program");
+				break;			
 			}
 		}
-		catch (invalid_argument& ErrorMessage)
+		catch (out_of_range& ErrorMessage)
 		{
-			cout << ErrorMessage.what() << endl;
+			break;
 		}
 	}
-		
 
 	return 0;
 }

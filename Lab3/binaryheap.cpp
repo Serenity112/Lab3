@@ -14,7 +14,23 @@ BinaryHeap::BinaryHeap()
 }
 
 BinaryHeap::~BinaryHeap()
-{}
+{
+	dft_iterator* new_dft_iterator;
+	new_dft_iterator = new dft_iterator(_root);
+
+	Node* _prev = _root;
+
+	while (new_dft_iterator->has_next())
+	{
+		_prev = new_dft_iterator->_current;
+
+		new_dft_iterator->next();
+
+		delete _prev;
+	}
+	delete new_dft_iterator->_current;
+	delete new_dft_iterator;
+}
 
 bool BinaryHeap::empty()
 {
@@ -33,7 +49,7 @@ BinaryHeap::Node::Node(int data)
 	_parent = nullptr;
 	_data = data;
 }
-
+	
 BinaryHeap::Node* BinaryHeap::findParentOfLast(int _lastLineSize)
 {
 	Node* parentNode = _root;
@@ -94,14 +110,7 @@ void BinaryHeap::insert(int data)
 			_height++;
 			_lastLineNodesCount = 1;
 
-			if (newNode->_data > parentNode->_data)
-			{
-				siftUp(newNode);
-			}
-			else
-			{
-				siftDown(newNode);
-			}
+			Heapify(newNode);
 
 			return;
 		}
@@ -121,14 +130,8 @@ void BinaryHeap::insert(int data)
 				newNode->_parent = parentNode;
 			}
 
-			if (newNode->_data > parentNode->_data)
-			{
-				siftUp(newNode);
-			}
-			else
-			{
-				siftDown(newNode);
-			}
+			Heapify(newNode);
+
 			return;
 		}
 	}
@@ -141,19 +144,7 @@ void BinaryHeap::siftDown(Node* node)
 			return;
 		}
 
-		Node* maxNode = nullptr; //node to swap with
-
-		if (node->_left == nullptr) //Means RIGHT is not NULL
-		{
-			if (node->_data < node->_right->_data)
-			{
-				maxNode = node->_right;
-			}
-			else
-			{
-				return;
-			}
-		}
+		Node* maxNode = node; //node to swap with
 
 		if (node->_right == nullptr)  //Means LEFT is not NULL
 		{
@@ -214,6 +205,22 @@ void BinaryHeap::siftUp(Node* node)
 	}
 }
 
+void BinaryHeap::Heapify(Node* node)
+{
+	if (node->_parent == nullptr)
+	{
+		siftDown(node);
+	} 
+	else if (node->_data > node->_parent->_data)
+	{
+		siftUp(node);
+	}
+	else
+	{
+		siftDown(node);
+	}
+}
+
 bool BinaryHeap::contains(int data)
 {
 	try
@@ -253,7 +260,7 @@ void BinaryHeap::remove(int data)
 {
 	Node* nodeToRemove = findNode(data);
 
-	if (nodeToRemove == _root || _height == 1)
+	if (_height == 1)
 	{
 		delete _root;
 		_root = nullptr;
@@ -306,25 +313,9 @@ void BinaryHeap::remove(int data)
 
 		delete lastNode;
 
-		if (nodeToRemove == _root)
-		{
-			siftDown(nodeToRemove);
-		}
-		else
-		{
-			if (nodeToRemove->_data > nodeToRemove->_parent->_data)
-			{
-				siftUp(nodeToRemove);
-			}
-			else
-			{
-				siftDown(nodeToRemove);
-			}
-		}
+		Heapify(nodeToRemove);
 
 	}
-
-
 }
 
 //DFT
