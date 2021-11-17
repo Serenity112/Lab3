@@ -9,7 +9,6 @@ using namespace std;
 
 int main()
 {
-
 	setlocale(LC_ALL, "Russian");
 
 	BinaryHeap binaryheap;
@@ -93,7 +92,7 @@ int main()
 				break;			
 			}
 		}
-		catch (out_of_range& ErrorMessage)
+		catch (out_of_range)
 		{
 			break;
 		}

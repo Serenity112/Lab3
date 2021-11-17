@@ -350,7 +350,7 @@ int BinaryHeap::dft_iterator::next()
 			_current = stack->top();
 			stack->pop();
 		}
-		catch (out_of_range& ErrorMessage)
+		catch (out_of_range)
 		{
 			_current = nullptr;
 		}	
@@ -409,7 +409,7 @@ int BinaryHeap::bft_iterator::next()
 	{
 		_current = queue->front();
 	} 
-	catch (out_of_range& ErrorMessage)
+	catch (out_of_range)
 	{
 		_current = nullptr;
 	}
