@@ -1,11 +1,11 @@
-#ifndef ITERATOR_H
-#define ITERATOR_H
+	#ifndef ITERATOR_H
+	#define ITERATOR_H
 
-class Iterator
-{
-public:
-	virtual int next() = 0;
-	virtual bool has_next() = 0;
-};
+	class Iterator
+	{
+	public:
+		virtual int next() = 0;
+		virtual bool has_next() = 0;
+	};
 
-#endif ITERATOR_H
+	#endif ITERATOR_H

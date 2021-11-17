@@ -57,21 +57,35 @@ int main()
 			case 4:
 				Iterator * dft_iterator;
 				dft_iterator = binaryheap.create_dft_iterator();
-				while (dft_iterator->has_next())
+				if (dft_iterator->has_next())
 				{
-					cout << dft_iterator->next() << " ";
+					while (dft_iterator->has_next())
+					{
+						cout << dft_iterator->next() << " ";
+					}
+					cout << endl;
 				}
-				cout << endl;
+				else
+				{
+					cout << "Heap is empty" << endl;
+				}			
 				delete dft_iterator;
 				break;
 			case 5:
 				Iterator * bft_iterator;
 				bft_iterator = binaryheap.create_bft_iterator();
-				while (bft_iterator->has_next())
+				if (bft_iterator->has_next())
 				{
-					cout << bft_iterator->next() << " ";
+					while (bft_iterator->has_next())
+					{
+						cout << bft_iterator->next() << " ";
+					}
+					cout << endl;
 				}
-				cout << endl;
+				else
+				{
+					cout << "Heap is empty" << endl;
+				}
 				delete bft_iterator;
 				break;
 			case 6:

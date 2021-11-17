@@ -57,17 +57,20 @@ BinaryHeap::Node* BinaryHeap::findParentOfLast(int _lastLineSize)
 	int tempLastLineSize = _lastLineSize;
 	int tempLastLineNodesCount = _lastLineNodesCount;
 
+	if (_lastLineNodesCount > _lastLineSize)
+	{
+		tempLastLineSize *= 2;
+	}
+
 	while (tempLastLineSize != 2)
 	{
 		if (tempLastLineNodesCount <= tempLastLineSize / 2)
 		{
-			cout << "go left\n";
 			parentNode = parentNode->_left;
 			tempLastLineSize /= 2;
 		}
 		else
 		{
-			cout << "go right\n";
 			parentNode = parentNode->_right;
 			tempLastLineNodesCount = tempLastLineNodesCount - tempLastLineSize / 2;
 			tempLastLineSize /= 2;
@@ -93,47 +96,35 @@ void BinaryHeap::insert(int data)
 
 		int _lastLineSize = 1;
 
-		for (int i = 0; i < _height-1; i++) //Counting last line MAX size
+		for (int i = 0; i < _height - 1; i++) //Counting last line MAX size
 		{
 			_lastLineSize *= 2;
 		}
 
-		if (_lastLineNodesCount == _lastLineSize) //Insert to new line if current is full
-		{	
-			for (int i = 1; i < _height; i++)
-			{
-				parentNode = parentNode->_left;	
-			}
-			parentNode->_left = newNode;
-			newNode->_parent = parentNode;
-
+		_lastLineNodesCount++;
+		if (_lastLineNodesCount > _lastLineSize)
+		{
 			_height++;
 			_lastLineNodesCount = 1;
+			_lastLineSize *= 2;
+		}
 
-			Heapify(newNode);
+		parentNode = findParentOfLast(_lastLineSize);
 
-			return;
+		if (parentNode->_left == nullptr)
+		{
+			parentNode->_left = newNode;
+			newNode->_parent = parentNode;
 		}
 		else
 		{
-			_lastLineNodesCount++;
-			parentNode = findParentOfLast(_lastLineSize);
-
-			if (parentNode->_left == nullptr)
-			{
-				parentNode->_left = newNode;
-				newNode->_parent = parentNode;
-			}
-			else
-			{
-				parentNode->_right = newNode;
-				newNode->_parent = parentNode;
-			}
-
-			Heapify(newNode);
-
-			return;
+			parentNode->_right = newNode;
+			newNode->_parent = parentNode;
 		}
+
+		Heapify(newNode);
+
+		return;
 	}
 }
 
@@ -225,15 +216,13 @@ bool BinaryHeap::contains(int data)
 {
 	try
 	{
-		Node* foundNode = findNode(data);
+		findNode(data);
 		return true;
 	} 
-	catch (invalid_argument& ErrorMessage)
+	catch (invalid_argument)
 	{
 		return false;
-	}
-	
-	
+	}	
 }
 
 BinaryHeap::Node* BinaryHeap::findNode(int data)
@@ -298,7 +287,6 @@ void BinaryHeap::remove(int data)
 		{
 			_lastLineNodesCount *= 2;
 		}
-
 	}
 
 	if (lastNode == nodeToRemove)

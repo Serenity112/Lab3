@@ -31,10 +31,6 @@ namespace UnitTestLab3
 		binaryheap.insert(5);
 		binaryheap.remove(2);
 	}
-	
-	//Queue
-
-	//Stack	
 
 	TEST_CLASS(BinaryHeapTest)
 	{
@@ -50,7 +46,6 @@ namespace UnitTestLab3
 		TEST_METHOD(insert)
 		{
 			BinaryHeap binaryheap;
-			Assert::IsTrue(binaryheap.empty());
 
 			binaryheap.insert(10);
 			binaryheap.insert(9);
@@ -58,7 +53,7 @@ namespace UnitTestLab3
 			binaryheap.insert(7);
 			binaryheap.insert(6);
 			binaryheap.insert(5);
-
+			
 			int array[7] = { 10, 9, 8, 7, 6, 5 };
 			int i = 0;
 
