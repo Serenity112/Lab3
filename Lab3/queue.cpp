@@ -15,6 +15,14 @@ template <class T> Queue<T>::Queue()
 	_last = nullptr;
 }
 
+template <class T> Queue<T>::~Queue()
+{
+	while (!empty())
+	{
+		pop();
+	}
+}
+
 template <class T> void Queue<T>::push(T node)
 {
 	Node* newNode = new Node(node);

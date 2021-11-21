@@ -22,6 +22,8 @@ private:
 public:
 	Stack();
 
+	~Stack();
+
 	void pop();
 
 	void push( T elem);

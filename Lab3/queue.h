@@ -24,6 +24,8 @@ private:
 public:
 	Queue();
 
+	~Queue();
+
 	void pop();
 
 	void push(T);

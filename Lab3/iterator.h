@@ -3,9 +3,12 @@
 
 	class Iterator
 	{
-	public:
+	public:	
 		virtual int next() = 0;
+
 		virtual bool has_next() = 0;
+
+		virtual ~Iterator() {};
 	};
 
 	#endif ITERATOR_H

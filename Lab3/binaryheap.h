@@ -70,6 +70,7 @@ public:
 		bool has_next() override;
 
 		int next() override;
+
 	private:
 		Stack<Node*>* stack;
 

@@ -17,6 +17,15 @@ template <class T> Stack<T>::Stack()
 	_head = nullptr;
 }
 
+template <class T> 
+Stack<T>::~Stack()
+{
+	while (!empty())
+	{
+		pop();
+	}
+}
+
 template <class T> void Stack<T>::push( T node)
 {
 	Node* newNode = new Node(node, _head);
